@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    /* Reset some default styles */
+    body, h1, p, form, input, label {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+    }
+
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button[type="button"] {
+        background-color: #4caf50;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    button[type="button"]:hover {
+        background-color: #6abe6f;
+    }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Calculator</title>
+</head>
+<body>
+    <h1 style="text-align: center; margin-bottom: 10px;">Employee Salary Calculator</h1>
+    <form id="calculateSavingInterest">
+        <label for="basicSalary">Masukkan Gaji Dasar Karyawan :</label>
+        <input type="text" id="basicSalary" name="basicSalary" oninput="formatNumber(this)" required><br>
+
+        <label for="bonus">Masukkan Jumlah Bonus :</label>
+        <input type="text" id="bonus" name="bonus" oninput="formatNumber(this)" required><br>
+
+        <label for="deductions">Masukkan Jumlah Potongan :</label>
+        <input type="text" id="deductions" name="deductions" oninput="formatNumber(this)" required><br>
+
+        <button type="button" onclick="netSalary()">Hitung</button>
+        <p id="result" style="text-align: center;"></p>
+    </form>
+
+</body>
+<script>
+    function formatIDRCurrency(amount) {
+        return new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 6,
+        }).format(amount);
+    }
+
+    function netSalary(){
+        const basicSalary = document.getElementById('basicSalary');
+        const bonus = document.getElementById('bonus');
+        const deductions = document.getElementById('deductions');
+        const resultParagraph = document.getElementById('result');
+
+        const gajiDasar = parseFloat(basicSalary.value);
+        const bonusEmployee = parseFloat(bonus.value);
+        const potongan = parseFloat(deductions.value);
+
+        const netSalary = gajiDasar + bonusEmployee - potongan;
+        
+        if (netSalary){
+            resultParagraph.textContent = `Gaji bersih sebesar ${formatIDRCurrency(netSalary)}`;
+        } else {
+            resultParagraph.textContent = 'Masukkan data yang valid';
+        }
+        
+        
+        
+        
+    }
+
+    function formatNumber(input) {
+            // Remove non-numeric characters
+            let value = input.value.replace(/[^0-9]/g, '');
+
+            // Check if there is a numeric value
+            if (value !== '') {
+                // Format the number with commas for thousands
+                value = parseFloat(value).toLocaleString('id-ID');
+            } else {
+                // If the value is not numeric, set to an empty string or any default value
+                value = '';
+            }
+
+            // Update the input value
+            input.value = value;
+        }
+
+    console.log(basicSalary);
+    console.log(bonus);
+    console.log(deductions);
+</script>
+</html>

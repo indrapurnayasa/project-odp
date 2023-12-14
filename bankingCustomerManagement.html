@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="addCustomer">
+        <h1>Tambah Customer</h1>
+        <label for="namaCustomer">Masukkan Nama</label>
+        <input type="text" id="namaCustomer" name="namaCustomer" required><br>
+
+        <label for="inputAccountNumber">Masukkan Nomor Rekening</label>
+        <input type="text" id="inputAccountNumber" name="inputAccountNumber" required><br>
+
+        <button type="button" onclick="cutomerNew()">Add</button>
+    </form>
+</body>
+<script>
+    let customer = []
+    function cutomerNew(){
+        function addCustomer(name, accountNumber){
+        let newCustomer = {
+            name: name,
+            accountNumber: accountNumber,
+            balance: 0,
+            transactionHistory: []
+        };
+
+        customer.push(newCustomer);
+    }
+    addCustomer(document.forms["addCustomer"]["namaCustomer"].value, document.forms["addCustomer"]["inputAccountNumber"].value);
+    console.log(customer);
+    }
+
+    
+
+    
+</script>
+</html>

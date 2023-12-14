@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 50px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    label {
+        margin-bottom: 10px;
+    }
+
+    input {
+        padding: 8px;
+        margin-bottom: 15px;
+    }
+
+    button{
+        margin: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid black;
+        background-color: white;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Saving interest</title>
+</head>
+<body>
+    <h1>Mari Berhitung</h1>
+    <form id="calculateSavingInterest">
+        <label for="tabunganAwal">Masukkan Tabungan Awal :</label>
+        <input type="text" id="tabunganAwal" name="tabunganAwal" required><br>
+
+        <label for="bungaTabungan">Masukkan Bunga Tabungan :</label>
+        <input type="number" id="bungaTabungan" name="bungaTabungan" required><br>
+
+        <label for="lamaMenabung">Masukkan Lama Menabung (Bulan) :</label>
+        <input type="number" id="lamaMenabung" name="lamaMenabung" required><br>
+
+        <button type="button" onclick="totalSaving()">Hitung</button>
+    </form>
+</body>
+    <p id="result"></p>
+<script>
+    function formatIDRCurrency(amount) {
+        return new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 0,
+        }).format(amount);
+    }
+
+    function totalSaving(){
+        const tabunganAwal = document.getElementById('tabunganAwal');
+        const bungaTabungan = document.getElementById('bungaTabungan');
+        const lamaMenabung = document.getElementById('lamaMenabung');
+        const resultParagraph = document.getElementById('result');
+
+        const initialSaving = parseFloat(tabunganAwal.value);
+        const interestRate = parseFloat(bungaTabungan.value);
+        const savingPeriod = parseFloat(lamaMenabung.value);
+
+        const interest = (initialSaving * interestRate * (savingPeriod/12)) / 100;
+        const totalSavings = initialSaving + interest;
+        
+        resultParagraph.textContent = `Total tabungan akhir setelah ${savingPeriod} bulan adalah ${formatIDRCurrency(totalSavings)}`;
+        
+    }
+</script>
+</html>

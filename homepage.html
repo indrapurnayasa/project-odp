@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    /* Reset some default styles */
+    body, h1, p, form, input, label {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+    }
+
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button[type="button"] {
+        background-color: #4caf50;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    button[type="button"]:hover {
+        background-color: #6abe6f;
+    }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Pengkondisian</title>
+
+    <style>
+
+    </style>
+</head>
+<body>
+    <form id="hitungFaktorial">
+        <label for="angka">Masukkan Angka :</label>
+        <input type="text" id="angka" name="angka" required><br>
+        <button type="button" onclick="mainFaktorial()">Try</button>
+        <button type="button" onclick="fetchAPI()">Fetch</button>
+        <p id="hasilFaktorial"></p>
+    </form>
+
+
+    <script>
+        // const switchCase = () => {
+        //     let data = prompt("Masukkan data anda :").toLowerCase();
+        //     switch (data){
+        //         case "senin":
+        //             alert("Meeting");
+        //             break;
+        //         default:
+        //             alert("Libur");
+        //             break;
+        //     }
+        // }
+
+
+        function mainFaktorial(){
+            const nilai = document.getElementById('angka');
+            const resultCount = document.getElementById('hasilFaktorial');
+
+            const nilaiInput = parseFloat(nilai.value);
+
+                function hitungFaktorial(nilaiInput) {
+
+                if (nilaiInput === 0 || nilaiInput === 1) {
+                    return 1;
+                } else {
+                    return nilaiInput * hitungFaktorial(nilaiInput - 1);
+                    
+                }
+            }
+            document.getElementById('hasilFaktorial').innerHTML = hitungFaktorial(nilaiInput);
+        }
+
+        
+        function fetchAPI() {
+            fetch('https://jsonplaceholder.typicode.com/todos')
+                .then((data) => data.json()) 
+                .then((data) => 
+                {
+                    data.forEach(element => {
+                        console.log(element)
+                    });
+                }
+                )                
+            }
+            
+
+    </script>
+</body>
+</html>
