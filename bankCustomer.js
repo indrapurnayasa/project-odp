@@ -1,14 +1,14 @@
-let customers = []; // This array will hold customer objects
+// let customers = []; // This array will hold customer objects
 
-function addCustomer(name, accountNumber) {
-  let newCustomer = {
-    name: name,
-    accountNumber: accountNumber,
-    balance: 0,
-    transactionHistory: []
-  };
-  customers.push(newCustomer);
-}
+// function addCustomer(name, accountNumber) {
+//   let newCustomer = {
+//     name: name,
+//     accountNumber: accountNumber,
+//     balance: 0,
+//     transactionHistory: []
+//   };
+//   customers.push(newCustomer);
+// }
 
 function findCustomerByAccountNumber(accountNumber) {
   return customers.find(customer => customer.accountNumber === accountNumber);
